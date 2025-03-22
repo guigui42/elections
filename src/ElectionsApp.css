@@ -325,3 +325,47 @@ body {
     font-size: 0.9rem;
   }
 }
+
+/* Accessibility styles */
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 3px solid #0055a4;
+  outline-offset: 2px;
+}
+
+.election-card:focus-within {
+  outline: none;
+  box-shadow: 0 0 0 3px #0055a4;
+}
+
+/* Skip to main content link */
+.skip-to-main {
+  background: #0055a4;
+  color: white;
+  left: -999px;
+  padding: 14px;
+  position: absolute;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.skip-to-main:focus {
+  left: 50%;
+  top: 8px;
+  transform: translateX(-50%);
+  width: auto;
+  height: auto;
+}
