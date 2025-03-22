@@ -17,102 +17,78 @@ export const mockElections: Election[] = [
   {
     id: '1',
     type: 'Municipales',
-    name: 'Élections Municipales',
+    name: 'Élections municipales',
     dates: [
-      { round: 1, date: '2026-03-01', isDateFixed: false },
-      { round: 2, date: '2026-03-01', isDateFixed: false }
+      { round: 1, date: '2026-03-15', isDateFixed: false }, // Using mid-March as approximate date
+      { round: 2, date: '2026-03-22', isDateFixed: false }
     ],
-    description: 'Élection des conseillers municipaux et communautaires.',
+    description: 'Élections des conseils municipaux',
     rounds: 2,
-    previousElection: '15 et 22 mars 2020',
-    dateFixation: 'La date précise sera fixée par décret environ 3 mois avant le scrutin'
+    previousElection: 'Mars et juin 2020',
+    dateFixation: 'La date précise doit être communiquée aux électeurs au moins 3 mois à l\'avance.'
   },
   {
     id: '2',
-    type: 'Départementales',
-    name: 'Élections Départementales',
+    type: 'Présidentielle',
+    name: 'Élection présidentielle',
     dates: [
-      { round: 1, date: '2027-03-01', isDateFixed: false },
-      { round: 2, date: '2027-03-01', isDateFixed: false }
+      { round: 1, date: '2027-04-11', isDateFixed: false }, // Using mid-April as approximate date
+      { round: 2, date: '2027-04-25', isDateFixed: false }
     ],
-    description: 'Élection des conseillers départementaux.',
+    description: 'Élection du Président de la République',
     rounds: 2,
-    previousElection: '20 et 27 juin 2021',
-    dateFixation: 'La date précise sera fixée par décret environ 3 mois avant le scrutin'
+    previousElection: 'Avril 2022',
+    dateFixation: 'Sauf en cas de vacance de la présidence de la République ou d\'empêchement du Président de la République, les électeurs sont convoqués au moins 10 semaines avant la date du 1er tour de scrutin.'
   },
   {
     id: '3',
-    type: 'Présidentielle',
-    name: 'Élection Présidentielle',
+    type: 'Départementales',
+    name: 'Élections départementales (ou cantonales)',
     dates: [
-      { round: 1, date: '2027-04-01', isDateFixed: false },
-      { round: 2, date: '2027-04-01', isDateFixed: false }
+      { round: 1, date: '2028-03-15', isDateFixed: false }, // Using mid-March as approximate date
+      { round: 2, date: '2028-03-22', isDateFixed: false }
     ],
-    description: 'Élection du Président de la République.',
+    description: 'Élections des conseillers départementaux',
     rounds: 2,
-    previousElection: '10 et 24 avril 2022',
-    dateFixation: 'La date précise est fixée par décret au moins 10 semaines avant le scrutin'
+    previousElection: 'Juin 2021',
+    dateFixation: 'La date précise doit être communiquée aux électeurs au moins 6 semaines à l\'avance.'
   },
   {
     id: '4',
-    type: 'Législatives',
-    name: 'Élections Législatives',
+    type: 'Régionales',
+    name: 'Élections régionales',
     dates: [
-      { round: 1, date: '2027-06-01', isDateFixed: false },
-      { round: 2, date: '2027-06-01', isDateFixed: false }
+      { round: 1, date: '2028-03-15', isDateFixed: false }, // Using mid-March as approximate date
+      { round: 2, date: '2028-03-22', isDateFixed: false }
     ],
-    description: 'Élection des députés à l\'Assemblée nationale.',
+    description: 'Élections des conseils régionaux',
     rounds: 2,
-    previousElection: '12 et 19 juin 2022',
-    dateFixation: 'La date précise est fixée par décret'
+    previousElection: 'Juin 2021',
+    dateFixation: 'La date précise doit être communiquée aux électeurs au moins 6 semaines à l\'avance.'
   },
   {
     id: '5',
-    type: 'Régionales',
-    name: 'Élections Régionales',
+    type: 'Européennes',
+    name: 'Élections européennes',
     dates: [
-      { round: 1, date: '2028-03-01', isDateFixed: false },
-      { round: 2, date: '2028-03-01', isDateFixed: false }
+      { round: 1, date: '2029-06-15', isDateFixed: false } // Using June as per previous election
     ],
-    description: 'Élection des conseillers régionaux.',
-    rounds: 2,
-    previousElection: '20 et 27 juin 2021',
-    dateFixation: 'La date précise sera fixée par décret environ 3 mois avant le scrutin'
+    description: 'Élection des députés européens français au Parlement européen',
+    rounds: 1,
+    previousElection: 'Juin 2024',
+    dateFixation: 'La date précise doit être communiquée aux électeurs au moins 7 semaines à l\'avance.'
   },
   {
     id: '6',
-    type: 'Européennes',
-    name: 'Élections Européennes',
+    type: 'Législatives',
+    name: 'Élections législatives',
     dates: [
-      { round: 1, date: '2029-05-09', isDateFixed: false }
+      { round: 1, date: '2029-06-15', isDateFixed: false }, // Using June as approximate date
+      { round: 2, date: '2029-06-22', isDateFixed: false }
     ],
-    description: 'Élection des députés européens français au Parlement européen.',
-    rounds: 1,
-    previousElection: '9 juin 2024',
-    dateFixation: 'La date est fixée au niveau européen'
-  },
-  {
-    id: '7',
-    type: 'Sénatoriales',
-    name: 'Élections Sénatoriales (Série 2)',
-    dates: [
-      { round: 1, date: '2026-09-01', isDateFixed: false }
-    ],
-    description: 'Renouvellement partiel du Sénat (série 2).',
-    rounds: 1,
-    previousElection: '27 septembre 2020 (série 2)',
-    dateFixation: 'La date est fixée par décret'
-  },
-  {
-    id: '8',
-    type: 'Sénatoriales',
-    name: 'Élections Sénatoriales (Série 1)',
-    dates: [
-      { round: 1, date: '2029-09-01', isDateFixed: false }
-    ],
-    description: 'Renouvellement partiel du Sénat (série 1).',
-    rounds: 1,
-    previousElection: '24 septembre 2023 (série 1)',
-    dateFixation: 'La date est fixée par décret'
+    description: 'Élection des députés à l\'Assemblée nationale',
+    rounds: 2,
+    previousElection: 'Juin et juillet 2024',
+    dateFixation: 'Sauf cas de dissolution, les élections ont lieu :\n- Dans les 70 jours avant la fin du mandat de l\'Assemblée nationale précédemment élue\n- Et le 7e dimanche qui suit la publication du décret convoquant les électeurs.'
   }
 ];
