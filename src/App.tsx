@@ -296,16 +296,16 @@ function App() {
                                       {date.round === 1 ? '1er tour' : '2nd tour'}
                                     </Badge>
                                   )}
-                                  <Text size="sm" fw={500} className="date-text">
+                                  <Text size="sm" fw={500} className="date-text" component="div">
                                     <time dateTime={date.date}>
                                       {formatElectionDate(date.date, date.isDateFixed)}
                                     </time>
-                                    {!date.isDateFixed && (
-                                      <Badge ml="xs" color="gray" variant="light" size="sm" className="date-status">
-                                        Date à définir
-                                      </Badge>
-                                    )}
                                   </Text>
+                                  {!date.isDateFixed && (
+                                    <Badge ml="xs" color="gray" variant="light" size="sm" className="date-status">
+                                      Date à définir
+                                    </Badge>
+                                  )}
                                 </Group>
                               </Group>
                             ))}
