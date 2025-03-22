@@ -259,6 +259,11 @@ body {
   .filter-container .mantine-Chip-root {
     font-size: 0.9rem;
   }
+
+  /* Hide header button on small screens */
+  .app-header .mantine-Button-root {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
