@@ -108,7 +108,7 @@ function App() {
         header={{ height: 60 }}
         padding="md"
       >
-        <AppShell.Header className="app-header">
+        <AppShell.Header className="app-header" component="header" role="banner">
           <Container h="100%">
             <Group h="100%" wrap="nowrap" style={{ width: '100%', position: 'relative' }}>
               <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
@@ -144,11 +144,10 @@ function App() {
           </Container>
         </AppShell.Header>
 
-        <AppShell.Main pt={80} className="main-content">
+        <AppShell.Main pt={80} className="main-content" component="main" role="main">
           <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
             <Container size="md" py="xl" style={{ width: '100%' }}>
-         
-              <Box className="filter-container">
+              <nav className="filter-container" role="navigation" aria-label="Filtres des élections">
                 <Stack gap="md">
                   <Box>
                     
@@ -187,7 +186,7 @@ function App() {
                     )}
                   </Group>
                 </Stack>
-              </Box>
+              </nav>
               
               {loading ? (
                 <Center h={200}>
@@ -200,7 +199,7 @@ function App() {
               ) : sortedElections.length === 0 ? (
                 <Text ta="center">Aucune élection à venir ne correspond aux critères sélectionnés.</Text>
               ) : (
-                <div className="election-list-container">
+                <section className="election-list-container" role="region" aria-label="Liste des élections">
                   <Stack gap="md" w="100%">
                     {sortedElections.map((election) => (
                         <Card key={election.id} shadow="sm" padding="lg" radius="md" withBorder className="election-card">
@@ -257,11 +256,11 @@ function App() {
                         </Card>
                       ))}
                   </Stack>
-                </div>
+                </section>
               )}
             </Container>
           </div>
-          <footer className="app-footer">
+          <footer className="app-footer" role="contentinfo">
             <Text>
               Source des données : {' '}
               <a 
@@ -274,6 +273,30 @@ function App() {
             </Text>
           </footer>
         </AppShell.Main>
+
+        {/* Add JSON-LD structured data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Calendrier des Prochaines Élections Françaises",
+            "description": "Consultez le calendrier des prochaines élections en France : présidentielle, législatives, municipales, européennes, régionales et départementales. Dates, informations et modalités de vote.",
+            "mainEntity": {
+              "@type": "ItemList",
+              "itemListElement": sortedElections.map((election, index) => ({
+                "@type": "Event",
+                "position": index + 1,
+                "name": election.name,
+                "description": election.description,
+                "startDate": election.dates[0].date,
+                "location": {
+                  "@type": "Country",
+                  "name": "France"
+                }
+              }))
+            }
+          })}
+        </script>
       </AppShell>
     </MantineProvider>
   );
