@@ -18,6 +18,8 @@ import {
 } from '@mantine/core';
 import '@mantine/core/styles.css';
 import './ElectionsApp.css';
+import { formatDistanceToNow } from 'date-fns';
+import { fr } from 'date-fns/locale';
 
 // Définition du type Élection
 interface Election {
@@ -211,10 +213,9 @@ function App() {
       .map(d => new Date(d.date))
       .find(date => date > today);
     
-    if (!nextDate) return -1;
+    if (!nextDate) return null;
     
-    const diffTime = nextDate.getTime() - today.getTime();
-    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return formatDistanceToNow(nextDate, { addSuffix: true, locale: fr });
   };
 
   // Update the format election date function to handle fixed/unfixed dates
@@ -343,9 +344,10 @@ function App() {
                           </Stack>
 
                           <Group justify="flex-end" mt="md">
-                            {getDaysRemaining(election.dates) > 0 ? (
-                              <Badge color={getDaysRemaining(election.dates) < 30 ? "red" : getDaysRemaining(election.dates) < 90 ? "yellow" : "green"}>
-                                {getDaysRemaining(election.dates) > 1 ? `${getDaysRemaining(election.dates)} jours` : `${getDaysRemaining(election.dates)} jour`}
+                            {getDaysRemaining(election.dates) ? (
+                              <Badge color={election.dates[0].date > new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString() ? "green" : 
+                                       election.dates[0].date > new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString() ? "yellow" : "red"}>
+                                {getDaysRemaining(election.dates)}
                               </Badge>
                             ) : (
                               <Badge color="gray">Terminée</Badge>
