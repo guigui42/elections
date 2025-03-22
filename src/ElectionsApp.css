@@ -4,6 +4,7 @@ body {
   background-color: #f8f9fa;
   display: flex;
   justify-content: center;
+  min-width: 320px; /* Prevent super narrow mobile views */
 }
 
 .election-card {
@@ -21,7 +22,9 @@ body {
 .app-header {
   background-color: #f9f9f9;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
-  height: 80px !important;
+  height: auto !important; /* Change from fixed height to auto */
+  min-height: 60px;
+  padding: 0.5rem 0;
   display: flex;
   align-items: center;
   width: 100%;
@@ -178,8 +181,63 @@ body {
   background-color: #f8f9fa;
 }
 
+/* Enhanced responsive design */
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 0 1rem;
+  }
+  
+  .election-card {
+    max-width: 100%;
+  }
+}
+
 /* Adaptation responsive */
 @media (max-width: 768px) {
+  .app-header .mantine-Container-root {
+    padding: 0 1rem;
+  }
+
+  .election-card {
+    max-width: 100%;
+    padding: 1rem !important;
+  }
+  
+  .filter-container {
+    max-width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .election-title {
+    font-size: 1.5rem;
+  }
+
+  .filter-container .mantine-Group-root {
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .filter-container .mantine-Chip-root {
+    font-size: 0.9rem;
+    margin: 0.25rem;
+  }
+
+  .header-logo {
+    padding: 4px 10px;
+  }
+
+  .french-flag-colors {
+    min-width: 150px;
+  }
+
+  /* Improve button positioning on mobile */
+  .app-header .mantine-Button-root {
+    font-size: 0.9rem;
+    padding: 0 0.75rem;
+  }
+
   .election-card {
     max-width: 95%;
     padding: 1rem !important;
@@ -204,6 +262,48 @@ body {
 }
 
 @media (max-width: 480px) {
+  .app-header {
+    padding: 0.5rem 0;
+  }
+
+  .election-card {
+    padding: 0.8rem !important;
+  }
+  
+  .site-title {
+    font-size: 1.1rem;
+  }
+  
+  .header-subtitle {
+    font-size: 0.7rem;
+  }
+
+  .election-card-title {
+    font-size: 1.2rem !important;
+    width: 100%;
+  }
+
+  /* Stack badge below title on very small screens */
+  .election-card .mantine-Group-root {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Improve date and badge layout on mobile */
+  .election-card .mantine-Group-root[justify="space-between"] {
+    gap: 0.5rem;
+  }
+
+  .french-flag-colors {
+    min-width: 120px;
+  }
+
+  /* Adjust footer for mobile */
+  .app-footer {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
   .election-card {
     padding: 0.8rem !important;
   }
