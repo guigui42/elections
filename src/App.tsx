@@ -24,9 +24,13 @@ interface Election {
   id: string;
   type: string;
   name: string;
-  date: string;
+  dates: {
+    round: number;
+    date: string;
+    isDateFixed: boolean;
+  }[];
   description: string;
-  rounds?: number;
+  rounds: number;
   previousElection?: string;
   dateFixation?: string;
 }
@@ -52,131 +56,102 @@ function App() {
             id: '1',
             type: 'Municipales',
             name: 'Élections Municipales',
-            date: '2026-03-01', // Date non fixée, mars 2026
-            description: 'Premier tour des élections municipales françaises. Élection des conseillers municipaux et communautaires.',
+            dates: [
+              { round: 1, date: '2026-03-01', isDateFixed: false },
+              { round: 2, date: '2026-03-01', isDateFixed: false }
+            ],
+            description: 'Élection des conseillers municipaux et communautaires.',
             rounds: 2,
-            previousElection: '15 et 22 mars 2020 (reporté partiellement en raison du COVID-19)',
-            dateFixation: 'La date précise sera fixée par décret de convocation des électeurs environ 3 mois avant le scrutin.'
+            previousElection: '15 et 22 mars 2020',
+            dateFixation: 'La date précise sera fixée par décret environ 3 mois avant le scrutin'
           },
           {
             id: '2',
-            type: 'Municipales',
-            name: 'Élections Municipales (Second Tour)',
-            date: '2026-03-01', // Date non fixée, mars 2026
-            description: 'Second tour des élections municipales françaises.',
+            type: 'Départementales',
+            name: 'Élections Départementales',
+            dates: [
+              { round: 1, date: '2027-03-01', isDateFixed: false },
+              { round: 2, date: '2027-03-01', isDateFixed: false }
+            ],
+            description: 'Élection des conseillers départementaux.',
             rounds: 2,
-            previousElection: '15 et 22 mars 2020 (reporté partiellement en raison du COVID-19)',
-            dateFixation: 'La date précise sera fixée par décret de convocation des électeurs environ 3 mois avant le scrutin.'
+            previousElection: '20 et 27 juin 2021',
+            dateFixation: 'La date précise sera fixée par décret environ 3 mois avant le scrutin'
           },
           {
             id: '3',
-            type: 'Départementales',
-            name: 'Élections Départementales',
-            date: '2027-03-01', // Date non fixée, mars 2027
-            description: 'Premier tour des élections départementales. Élection des conseillers départementaux.',
+            type: 'Présidentielle',
+            name: 'Élection Présidentielle',
+            dates: [
+              { round: 1, date: '2027-04-01', isDateFixed: false },
+              { round: 2, date: '2027-04-01', isDateFixed: false }
+            ],
+            description: 'Élection du Président de la République.',
             rounds: 2,
-            previousElection: '20 et 27 juin 2021 (reporté en raison du COVID-19)',
-            dateFixation: 'La date précise sera fixée par décret de convocation des électeurs environ 3 mois avant le scrutin.'
+            previousElection: '10 et 24 avril 2022',
+            dateFixation: 'La date précise est fixée par décret au moins 10 semaines avant le scrutin'
           },
           {
             id: '4',
-            type: 'Départementales',
-            name: 'Élections Départementales (Second Tour)',
-            date: '2027-03-01', // Date non fixée, mars 2027
-            description: 'Second tour des élections départementales.',
+            type: 'Législatives',
+            name: 'Élections Législatives',
+            dates: [
+              { round: 1, date: '2027-06-01', isDateFixed: false },
+              { round: 2, date: '2027-06-01', isDateFixed: false }
+            ],
+            description: 'Élection des députés à l\'Assemblée nationale.',
             rounds: 2,
-            previousElection: '20 et 27 juin 2021 (reporté en raison du COVID-19)',
-            dateFixation: 'La date précise sera fixée par décret de convocation des électeurs environ 3 mois avant le scrutin.'
+            previousElection: '12 et 19 juin 2022',
+            dateFixation: 'La date précise est fixée par décret'
           },
           {
             id: '5',
-            type: 'Présidentielle',
-            name: 'Élection Présidentielle',
-            date: '2027-04-01', // Date non fixée, avril 2027
-            description: 'Premier tour de l\'élection présidentielle française. Élection du Président de la République.',
+            type: 'Régionales',
+            name: 'Élections Régionales',
+            dates: [
+              { round: 1, date: '2028-03-01', isDateFixed: false },
+              { round: 2, date: '2028-03-01', isDateFixed: false }
+            ],
+            description: 'Élection des conseillers régionaux.',
             rounds: 2,
-            previousElection: '10 et 24 avril 2022',
-            dateFixation: 'La date précise est fixée par décret au moins 10 semaines avant le scrutin.'
+            previousElection: '20 et 27 juin 2021',
+            dateFixation: 'La date précise sera fixée par décret environ 3 mois avant le scrutin'
           },
           {
             id: '6',
-            type: 'Présidentielle',
-            name: 'Élection Présidentielle (Second Tour)',
-            date: '2027-04-01', // Date non fixée, avril 2027
-            description: 'Second tour de l\'élection présidentielle française.',
-            rounds: 2,
-            previousElection: '10 et 24 avril 2022',
-            dateFixation: 'La date précise est fixée par décret au moins 10 semaines avant le scrutin.'
+            type: 'Européennes',
+            name: 'Élections Européennes',
+            dates: [
+              { round: 1, date: '2029-05-09', isDateFixed: false }
+            ],
+            description: 'Élection des députés européens français au Parlement européen.',
+            rounds: 1,
+            previousElection: '9 juin 2024',
+            dateFixation: 'La date est fixée au niveau européen'
           },
           {
             id: '7',
-            type: 'Législatives',
-            name: 'Élections Législatives',
-            date: '2027-06-01', // Date non fixée, juin 2027
-            description: 'Premier tour des élections législatives. Élection des députés à l\'Assemblée nationale.',
-            rounds: 2,
-            previousElection: '12 et 19 juin 2022',
-            dateFixation: 'La date précise est fixée par décret de convocation des électeurs.'
+            type: 'Sénatoriales',
+            name: 'Élections Sénatoriales (Série 2)',
+            dates: [
+              { round: 1, date: '2026-09-01', isDateFixed: false }
+            ],
+            description: 'Renouvellement partiel du Sénat (série 2).',
+            rounds: 1,
+            previousElection: '27 septembre 2020 (série 2)',
+            dateFixation: 'La date est fixée par décret'
           },
           {
             id: '8',
-            type: 'Législatives',
-            name: 'Élections Législatives (Second Tour)',
-            date: '2027-06-01', // Date non fixée, juin 2027
-            description: 'Second tour des élections législatives.',
-            rounds: 2,
-            previousElection: '12 et 19 juin 2022',
-            dateFixation: 'La date précise est fixée par décret de convocation des électeurs.'
-          },
-          {
-            id: '9',
-            type: 'Régionales',
-            name: 'Élections Régionales',
-            date: '2028-03-01', // Date non fixée, mars 2028
-            description: 'Premier tour des élections régionales. Élection des conseillers régionaux.',
-            rounds: 2,
-            previousElection: '20 et 27 juin 2021 (reporté en raison du COVID-19)',
-            dateFixation: 'La date précise sera fixée par décret de convocation des électeurs environ 3 mois avant le scrutin.'
-          },
-          {
-            id: '10',
-            type: 'Régionales',
-            name: 'Élections Régionales (Second Tour)',
-            date: '2028-03-01', // Date non fixée, mars 2028
-            description: 'Second tour des élections régionales.',
-            rounds: 2,
-            previousElection: '20 et 27 juin 2021 (reporté en raison du COVID-19)',
-            dateFixation: 'La date précise sera fixée par décret de convocation des électeurs environ 3 mois avant le scrutin.'
-          },
-          {
-            id: '11',
-            type: 'Européennes',
-            name: 'Élections Européennes',
-            date: '2029-05-01', // Date non fixée, mai 2029
-            description: 'Élection des députés européens français au Parlement européen. Scrutin à un seul tour.',
-            rounds: 1,
-            previousElection: '9 juin 2024',
-            dateFixation: 'La date est fixée au niveau européen pour l\'ensemble des États membres, généralement fixée par le Conseil de l\'Union européenne.'
-          },
-          {
-            id: '12',
             type: 'Sénatoriales',
-            name: 'Élections Sénatoriales',
-            date: '2026-09-01', // Date non fixée, septembre 2026
-            description: 'Renouvellement partiel du Sénat (série 2). Élection au suffrage universel indirect.',
+            name: 'Élections Sénatoriales (Série 1)',
+            dates: [
+              { round: 1, date: '2029-09-01', isDateFixed: false }
+            ],
+            description: 'Renouvellement partiel du Sénat (série 1).',
             rounds: 1,
-            previousElection: '24 septembre 2023 (série 1) et 27 septembre 2020 (série 2)',
-            dateFixation: 'La date est fixée par décret, traditionnellement en septembre de l\'année concernée.'
-          },
-          {
-            id: '13',
-            type: 'Sénatoriales',
-            name: 'Élections Sénatoriales',
-            date: '2029-09-01', // Date non fixée, septembre 2029
-            description: 'Renouvellement partiel du Sénat (série 1). Élection au suffrage universel indirect.',
-            rounds: 1,
-            previousElection: '24 septembre 2023 (série 1) et 27 septembre 2020 (série 2)',
-            dateFixation: 'La date est fixée par décret, traditionnellement en septembre de l\'année concernée.'
+            previousElection: '24 septembre 2023 (série 1)',
+            dateFixation: 'La date est fixée par décret'
           }
         ];
         
@@ -206,7 +181,7 @@ function App() {
 
   // Trier les élections par date
   const sortedElections = [...filteredElections].sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    (a, b) => new Date(a.dates[0].date).getTime() - new Date(b.dates[0].date).getTime()
   );
 
   // Obtenir la couleur du badge en fonction du type d'élection
@@ -230,32 +205,25 @@ function App() {
   };
 
   // Calculer les jours restants jusqu'à l'élection
-  const getDaysRemaining = (electionDate: string) => {
+  const getDaysRemaining = (dates: { round: number; date: string }[]) => {
     const today = new Date();
-    const election = new Date(electionDate);
-    const diffTime = election.getTime() - today.getTime();
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays;
+    const nextDate = dates
+      .map(d => new Date(d.date))
+      .find(date => date > today);
+    
+    if (!nextDate) return -1;
+    
+    const diffTime = nextDate.getTime() - today.getTime();
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   };
 
-  // Format the date based on whether it's fixed or not
-  const formatElectionDate = (date: string) => {
-    const electionDate = new Date(date);
-    const options: Intl.DateTimeFormatOptions = {
-      year: 'numeric',
-      month: 'long',
-    };
+  // Update the format election date function to handle fixed/unfixed dates
+  const formatElectionDate = (date: string, isDateFixed: boolean) => {
+    const options: Intl.DateTimeFormatOptions = isDateFixed 
+      ? { year: 'numeric', month: 'long', day: 'numeric' }
+      : { year: 'numeric', month: 'long' };
     
-    // If the day is 1, it means the exact date is not fixed yet
-    if (electionDate.getDate() === 1) {
-      return new Date(date).toLocaleDateString('fr-FR', options);
-    }
-    
-    // Otherwise, show the full date
-    return new Date(date).toLocaleDateString('fr-FR', {
-      ...options,
-      day: 'numeric'
-    });
+    return new Date(date).toLocaleDateString('fr-FR', options);
   };
 
   return (
@@ -288,8 +256,8 @@ function App() {
         </AppShell.Header>
 
         <AppShell.Main pt={80} className="main-content">
-          <div style={{ flex: 1 }}>
-            <Container size="md" py="xl">
+          <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+            <Container size="md" py="xl" style={{ width: '100%' }}>
          
               <Box className="filter-container">
                 <Stack gap="md">
@@ -343,9 +311,7 @@ function App() {
               ) : (
                 <div className="election-list-container">
                   <Stack gap="md" w="100%">
-                    {sortedElections.map((election) => {
-                      const daysRemaining = getDaysRemaining(election.date);
-                      return (
+                    {sortedElections.map((election) => (
                         <Card key={election.id} shadow="sm" padding="lg" radius="md" withBorder className="election-card">
                           <Group justify="space-between" mb="xs" wrap="wrap" gap="sm">
                             <Title order={3} size="h4" className="election-card-title">{election.name}</Title>
@@ -358,45 +324,49 @@ function App() {
                             {election.description}
                           </Text>
                           
-                          <Group justify="space-between" mt="md" wrap="wrap" gap="md">
-                            <Group gap="xs">
-                              <Text fw={500}>
-                                Date : {formatElectionDate(election.date)}
-                              </Text>
-                              {new Date(election.date).getDate() === 1 && (
-                                <Badge color="gray" variant="light">Date à définir</Badge>
-                              )}
-                            </Group>
-                            
-                            {daysRemaining > 0 ? (
-                              <Badge color={daysRemaining < 30 ? "red" : daysRemaining < 90 ? "yellow" : "green"}>
-                                {daysRemaining > 1 ? `${daysRemaining} jours restants` : `${daysRemaining} jour restant`}
+                          <Stack gap="xs">
+                            {election.dates.map((date, index) => (
+                              <Group key={index} gap="xs">
+                                {election.rounds > 1 && (
+                                  <Badge variant="light" size="sm" color={getTypeColor(election.type)}>
+                                    {date.round === 1 ? '1er tour' : '2nd tour'}
+                                  </Badge>
+                                )}
+                                <Text fw={500}>
+                                  {formatElectionDate(date.date, date.isDateFixed)}
+                                  {!date.isDateFixed && (
+                                    <Badge ml="xs" color="gray" variant="light">Date à définir</Badge>
+                                  )}
+                                </Text>
+                              </Group>
+                            ))}
+                          </Stack>
+
+                          <Group justify="flex-end" mt="md">
+                            {getDaysRemaining(election.dates) > 0 ? (
+                              <Badge color={getDaysRemaining(election.dates) < 30 ? "red" : getDaysRemaining(election.dates) < 90 ? "yellow" : "green"}>
+                                {getDaysRemaining(election.dates) > 1 ? `${getDaysRemaining(election.dates)} jours` : `${getDaysRemaining(election.dates)} jour`}
                               </Badge>
                             ) : (
                               <Badge color="gray">Terminée</Badge>
                             )}
                           </Group>
                           
-                          {election.rounds && (
-                            <Text size="sm" mt="xs">
-                              Format de l'élection : {election.rounds} tour{election.rounds > 1 ? 's' : ''}
-                            </Text>
-                          )}
-                          
-                          {election.previousElection && (
-                            <Text size="sm" mt="xs" fw={500}>
-                              Précédent vote : <Text span c="dimmed" fw="normal">{election.previousElection}</Text>
-                            </Text>
-                          )}
-                          
-                          {election.dateFixation && (
-                            <Text size="sm" mt="xs" fw={500}>
-                              Fixation de la date précise : <Text span c="dimmed" fw="normal">{election.dateFixation}</Text>
-                            </Text>
-                          )}
+                          <Box mt="md">
+                            {election.previousElection && (
+                              <Text size="sm" c="dimmed">
+                                Précédent scrutin : {election.previousElection}
+                              </Text>
+                            )}
+                            
+                            {election.dateFixation && (
+                              <Text size="sm" c="dimmed" style={{ fontStyle: 'italic' }} mt="xs">
+                                {election.dateFixation}
+                              </Text>
+                            )}
+                          </Box>
                         </Card>
-                      );
-                    })}
+                      ))}
                   </Stack>
                 </div>
               )}
