@@ -109,24 +109,37 @@ function App() {
         padding="md"
       >
         <AppShell.Header className="app-header">
-          <Container size="lg" h="100%">
-            
-            <Group justify="center" h="100%">
-
-              <div className="header-logo">
-              <div className="french-flag-colors">
-                <div className="flag-blue"></div>
-                <div className="flag-white"></div>
-                <div className="flag-red"></div>
+          <Container h="100%">
+            <Group h="100%" wrap="nowrap" style={{ width: '100%', position: 'relative' }}>
+              <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
+                <div className="header-logo">
+                  <div className="french-flag-colors">
+                    <div className="flag-blue"></div>
+                    <div className="flag-white"></div>
+                    <div className="flag-red"></div>
+                  </div>
+                  <Title order={1} size="h3" className="site-title">Prochaines Élections Françaises</Title>
+                  <div className="french-flag-colors">
+                    <div className="flag-blue"></div>
+                    <div className="flag-white"></div>
+                    <div className="flag-red"></div>
+                  </div>
+                </div>
               </div>
-                <Title order={1} size="h3" className="site-title">Prochaines Élections Françaises</Title>
               
-              </div>
-              <div className="french-flag-colors">
-                <div className="flag-blue"></div>
-                <div className="flag-white"></div>
-                <div className="flag-red"></div>
-              </div>
+              <Button
+                component="a"
+                href="https://www.service-public.fr/particuliers/vosdroits/N47"
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="outline"
+                color="blue"
+                leftSection="🗳️"
+                style={{ marginLeft: 'auto' }}
+                fw={500}
+              >
+                Comment voter
+              </Button>
             </Group>
           </Container>
         </AppShell.Header>
@@ -160,17 +173,19 @@ function App() {
                     </Group>
                   </Box>
 
-                  {selectedTypes.length > 0 && (
-                    <Button 
-                      variant="subtle" 
-                      onClick={() => {
-                        setSelectedTypes([]);
-                      }}
-                      leftSection="🔄"
-                    >
-                      Réinitialiser les filtres
-                    </Button>
-                  )}
+                  <Group>
+                    {selectedTypes.length > 0 && (
+                      <Button 
+                        variant="subtle" 
+                        onClick={() => {
+                          setSelectedTypes([]);
+                        }}
+                        leftSection="🔄"
+                      >
+                        Réinitialiser les filtres
+                      </Button>
+                    )}
+                  </Group>
                 </Stack>
               </Box>
               
