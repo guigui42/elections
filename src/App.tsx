@@ -14,7 +14,8 @@ import {
   Center,
   Alert,
   Box,
-  Chip
+  Chip,
+  Tooltip
 } from '@mantine/core';
 import '@mantine/core/styles.css';
 import './ElectionsApp.css';
@@ -267,6 +268,19 @@ function App() {
                       </Stack>
 
                       <Box mt="md">
+                        <Tooltip
+                          label={election.detailsScrutin}
+                          position="bottom"
+                          withArrow
+                          multiline
+                          w={300}
+                          transitionProps={{ transition: 'fade', duration: 200 }}
+                        >
+                          <Text size="sm" fw={500} mb="xs" style={{ cursor: 'help' }}>
+                            {election.modeScrutin}
+                          </Text>
+                        </Tooltip>
+                        
                         {election.previousElection && (
                           <Text size="sm" c="dimmed" className="previous-election">
                             Précédent scrutin : {election.previousElection}
