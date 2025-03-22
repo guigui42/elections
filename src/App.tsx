@@ -230,42 +230,45 @@ function App() {
                         {election.description}
                       </Text>
                       
-                      <Stack gap="xs" className="dates-stack">
-                        {election.dates.map((date, index) => (
-                          <Group key={index} justify="space-between" wrap="wrap" gap="xs" className="date-group">
-                            <Group gap="xs" wrap="nowrap">
-                              {election.rounds > 1 && (
-                                <Badge 
-                                  variant="light" 
-                                  size="sm"
-                                  color={getTypeColor(election.type)}
-                                  className="round-badge"
-                                >
-                                  {date.round === 1 ? '1er tour' : '2nd tour'}
-                                </Badge>
-                              )}
-                              <Text size="sm" fw={500} className="date-text">
-                                {formatElectionDate(date.date, date.isDateFixed)}
-                                {!date.isDateFixed && (
-                                  <Badge ml="xs" color="gray" variant="light" size="sm" className="date-status">
-                                    Date à définir
+                      <div className="dates-container">
+                        {election.dates[0] && getDaysRemaining(election.dates) && (
+                          <Badge 
+                            className="days-remaining"
+                            color={election.dates[0].date > new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString() ? "green" : 
+                                   election.dates[0].date > new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString() ? "yellow" : "red"}
+                            size="sm"
+                          >
+                            {getDaysRemaining(election.dates)}
+                          </Badge>
+                        )}
+                        
+                        <Stack gap="xs" className="dates-stack">
+                          {election.dates.map((date, index) => (
+                            <Group key={index} justify="space-between" wrap="wrap" gap="xs" className="date-group">
+                              <Group gap="xs" wrap="nowrap">
+                                {election.rounds > 1 && (
+                                  <Badge 
+                                    variant="light" 
+                                    size="sm"
+                                    color={getTypeColor(election.type)}
+                                    className="round-badge"
+                                  >
+                                    {date.round === 1 ? '1er tour' : '2nd tour'}
                                   </Badge>
                                 )}
-                              </Text>
+                                <Text size="sm" fw={500} className="date-text">
+                                  {formatElectionDate(date.date, date.isDateFixed)}
+                                  {!date.isDateFixed && (
+                                    <Badge ml="xs" color="gray" variant="light" size="sm" className="date-status">
+                                      Date à définir
+                                    </Badge>
+                                  )}
+                                </Text>
+                              </Group>
                             </Group>
-                            {index === 0 && getDaysRemaining(election.dates) && (
-                              <Badge 
-                                color={election.dates[0].date > new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString() ? "green" : 
-                                       election.dates[0].date > new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString() ? "yellow" : "red"}
-                                size="sm"
-                                className="days-remaining"
-                              >
-                                {getDaysRemaining(election.dates)}
-                              </Badge>
-                            )}
-                          </Group>
-                        ))}
-                      </Stack>
+                          ))}
+                        </Stack>
+                      </div>
 
                       <Box mt="md">
                         <Tooltip

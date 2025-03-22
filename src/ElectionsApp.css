@@ -294,6 +294,22 @@ body {
     align-items: flex-start;
   }
 
+  /* Stack days remaining above dates on mobile */
+  .dates-container {
+    position: relative;
+    padding-top: 1.5rem;
+  }
+
+  .days-remaining {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .date-group {
+    margin-top: 0.25rem;
+  }
+
   /* Improve date and badge layout on mobile */
   .election-card .mantine-Group-root[justify="space-between"] {
     gap: 0.5rem;
@@ -307,17 +323,5 @@ body {
   .app-footer {
     padding: 1rem;
     font-size: 0.9rem;
-  }
-
-  .election-card {
-    padding: 0.8rem !important;
-  }
-  
-  .site-title {
-    font-size: 1.2rem;
-  }
-  
-  .header-subtitle {
-    font-size: 0.7rem;
   }
 }
