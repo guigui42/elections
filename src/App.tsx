@@ -327,33 +327,30 @@ function App() {
                           
                           <Stack gap="xs">
                             {election.dates.map((date, index) => (
-                              <Group key={index} gap="xs">
-                                {election.rounds > 1 && (
-                                  <Badge variant="light" size="sm" color={getTypeColor(election.type)}>
-                                    {date.round === 1 ? '1er tour' : '2nd tour'}
+                              <Group key={index} justify="space-between" wrap="nowrap">
+                                <Group gap="xs" wrap="nowrap">
+                                  {election.rounds > 1 && (
+                                    <Badge variant="light" size="sm" color={getTypeColor(election.type)}>
+                                      {date.round === 1 ? '1er tour' : '2nd tour'}
+                                    </Badge>
+                                  )}
+                                  <Text fw={500}>
+                                    {formatElectionDate(date.date, date.isDateFixed)}
+                                    {!date.isDateFixed && (
+                                      <Badge ml="xs" color="gray" variant="light">Date à définir</Badge>
+                                    )}
+                                  </Text>
+                                </Group>
+                                {index === 0 && getDaysRemaining(election.dates) && (
+                                  <Badge color={election.dates[0].date > new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString() ? "green" : 
+                                           election.dates[0].date > new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString() ? "yellow" : "red"}>
+                                    {getDaysRemaining(election.dates)}
                                   </Badge>
                                 )}
-                                <Text fw={500}>
-                                  {formatElectionDate(date.date, date.isDateFixed)}
-                                  {!date.isDateFixed && (
-                                    <Badge ml="xs" color="gray" variant="light">Date à définir</Badge>
-                                  )}
-                                </Text>
                               </Group>
                             ))}
                           </Stack>
 
-                          <Group justify="flex-end" mt="md">
-                            {getDaysRemaining(election.dates) ? (
-                              <Badge color={election.dates[0].date > new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString() ? "green" : 
-                                       election.dates[0].date > new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString() ? "yellow" : "red"}>
-                                {getDaysRemaining(election.dates)}
-                              </Badge>
-                            ) : (
-                              <Badge color="gray">Terminée</Badge>
-                            )}
-                          </Group>
-                          
                           <Box mt="md">
                             {election.previousElection && (
                               <Text size="sm" c="dimmed">
