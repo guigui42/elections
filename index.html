@@ -28,16 +28,26 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://elections.osny.info/" />
 
-<!-- Matomo Tag Manager -->
+<!-- Matomo -->
 <script>
-  var _mtm = window._mtm = window._mtm || [];
-  _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setCookieDomain", "*.elections.osny.info"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
   (function() {
+    var u="//matomo.osny.info/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '2']);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.async=true; g.src='https://matomo.osny.info/js/container_UORMutJd.js'; s.parentNode.insertBefore(g,s);
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
   })();
 </script>
-<!-- End Matomo Tag Manager -->
+<noscript><p><img referrerpolicy="no-referrer-when-downgrade" src="//matomo.osny.info/matomo.php?idsite=2&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Matomo Code -->
+
+
+
 
 
   </head>
